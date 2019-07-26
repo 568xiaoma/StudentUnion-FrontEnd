@@ -1,0 +1,121 @@
+<template>
+  <div class="my-allproblem">
+    <el-table
+      :data="tableData"
+      style="width: 100%">
+      <el-table-column
+        prop="_id"
+        label="序列号"
+        width="230">
+      </el-table-column>
+      <el-table-column
+        prop="commitData"
+        label="上传时间"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="questionName"
+        label="问题简称"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="question"
+        label="问题描述"
+        width="280">
+        <template slot-scope="scope">
+          <el-collapse style="background-color:rgba(0,0,0,0);">
+            <el-collapse-item name="1">
+              <template slot="title">
+                <div class="my-desc-text-container">{{scope.row.question}}</div>
+              </template>
+              <div style="padding-left:1rem;padding-right:1rem;">{{scope.row.question}}</div>
+            </el-collapse-item>
+          </el-collapse>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="操作"
+        width="100">
+        <template slot-scope="scope">
+          <el-button @click="passItem(scope.row._id)" type="text" size="small">通过</el-button>
+          <el-button @click="delItem(scope.row._id)" type="text" size="small">不通过</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+</template>
+<script>
+export default {
+  name: 'MyRights',
+  data() {
+      return {
+        tableData: [
+        ]
+      };
+    },
+  methods: {
+    passItem(id){
+      jQuery.post(
+        'https://husteicstu.cn:3000/RightCenter/setTag',
+        {
+          tag: 1,
+          id: id,
+        },
+        function (res) {
+          console.log(res)
+          this.$message({
+            message: '更新成功',
+            type: 'success'
+          });
+        }
+      )
+    },
+    delItem(id){
+      jQuery.post(
+        'https://husteicstu.cn:3000/RightCenter/setTag',
+        {
+          tag: -1,
+          id: id,
+        },
+        function (res) {
+          console.log(res)
+          this.$message({
+            message: '更新成功',
+            type: 'success'
+          });
+        }
+      )
+    }
+  },
+  mounted(){
+    var that = this
+    jQuery.get(
+      'https://husteicstu.cn:3000/RightCenter/getByTag',
+      {
+        tag: 0,
+      },
+      function (res) {
+        console.log(res)
+        that.tableData = res.data
+      }
+    )
+  }
+}
+</script>
+
+<style>
+.my-allproblem{
+  width: 100%;
+  padding: 2rem;
+}
+.my-desc-text-container{
+  padding-left:1rem;
+  padding-right:1rem;
+  border:0;
+  margin:0;
+  font-size:0.9rem;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+</style>
