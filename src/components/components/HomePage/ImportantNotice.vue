@@ -2,7 +2,7 @@
   <el-card class="my-notice-box-card">
   <div slot="header" class="clearfix">
     <span>学院重要消息通知</span>
-    <el-button style="float: right; padding: 3px 0" type="text">更多></el-button>
+    <!-- <el-button style="float: right; padding: 3px 0" type="text">更多></el-button> -->
   </div>
   <el-collapse style="padding-top:0">
     <el-collapse-item 

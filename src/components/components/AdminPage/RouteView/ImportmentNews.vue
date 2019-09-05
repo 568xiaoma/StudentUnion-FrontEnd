@@ -124,22 +124,48 @@ export default {
       )
     },
     handleClick(data){
+      var that = this
       console.log(data)
       jQuery.post(
         'https://husteicstu.cn:3000/message',
         data,
         function (res) {
           console.log(res)
+          that.$message({
+            message: "提交成功",
+            type: "success"
+          })
         }
       )
     },
     handleDeleteClick(data,index){
+      var that = this
       this.tableData.splice(index, 1);
+      console.log(data.index)
       jQuery.post(
         'https://husteicstu.cn:3000/message/delete',
-        {index: data._id},
+        {index: data.index},
         function (res) {
           console.log(res)
+          if(res.code == "-1"){
+            that.$message({
+              message: "删除失败",
+              type: "success"
+            })
+          }
+          else{
+            that.$message({
+              message: "删除成功",
+              type: "success"
+            })
+            jQuery.get(
+              'https://husteicstu.cn:3000/message',
+              function (res) {
+                console.log(res.data)
+                that.tableData = res.data
+              }
+            )
+          }
         }
       )
     },

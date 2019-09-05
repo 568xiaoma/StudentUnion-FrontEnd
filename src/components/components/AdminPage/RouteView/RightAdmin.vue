@@ -55,6 +55,7 @@ export default {
     },
   methods: {
     passItem(id){
+      var that = this
       jQuery.post(
         'https://husteicstu.cn:3000/RightCenter/setTag',
         {
@@ -63,14 +64,25 @@ export default {
         },
         function (res) {
           console.log(res)
-          this.$message({
+          that.$message({
             message: '更新成功',
             type: 'success'
           });
+          jQuery.get(
+            'https://husteicstu.cn:3000/RightCenter/getByTag',
+            {
+              tag: 0,
+            },
+            function (res) {
+              console.log(res)
+              that.tableData = res.data
+            }
+          )
         }
       )
     },
     delItem(id){
+      var that = this
       jQuery.post(
         'https://husteicstu.cn:3000/RightCenter/setTag',
         {
@@ -79,10 +91,20 @@ export default {
         },
         function (res) {
           console.log(res)
-          this.$message({
+          that.$message({
             message: '更新成功',
             type: 'success'
           });
+          jQuery.get(
+            'https://husteicstu.cn:3000/RightCenter/getByTag',
+            {
+              tag: 0,
+            },
+            function (res) {
+              console.log(res)
+              that.tableData = res.data
+            }
+          )
         }
       )
     }

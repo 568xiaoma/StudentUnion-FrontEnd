@@ -46,7 +46,7 @@
         width="100">
         <template slot-scope="scope">
           <el-button @click="submitItem(scope.row._id,scope.row.solution)" type="text" size="small">修改</el-button>
-          <el-button type="text" size="small">删除</el-button>
+          <!-- <el-button type="text" size="small">删除</el-button> -->
         </template>
       </el-table-column>
     </el-table>
@@ -78,6 +78,16 @@ export default {
             message: '更新成功',
             type: 'success'
           });
+          jQuery.get(
+            'https://husteicstu.cn:3000/RightCenter/getByTag',
+            {
+              tag: 2,
+            },
+            function (res) {
+              console.log(res)
+              that.tableData = res.data
+            }
+          )
         }
       )
     }

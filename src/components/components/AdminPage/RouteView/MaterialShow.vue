@@ -170,22 +170,43 @@ export default {
       )
     },
     handleClick(data){
+      var that = this
       console.log(data)
       jQuery.post(
         'https://husteicstu.cn:3000/dataCenter',
         data,
         function (res) {
           console.log(res)
+          that.$message({
+            message: "提交成功",
+            type: "success"
+          })
         }
       )
     },
     handleDeleteClick(data){
+      var that = this
       console.log(data.index)
       jQuery.post(
         'https://husteicstu.cn:3000/dataCenter/delete',
         {index: data.index},
         function (res) {
           console.log(res)
+          that.$message({
+            message: "删除成功",
+            type: "success"
+          })
+          var that_ = that
+          jQuery.get(
+            'https://husteicstu.cn:3000/dataCenter',
+            {
+              tag: 'material'
+            },
+            function (res) {
+              console.log(res.data)
+              that_.tableData = res.data
+            }
+          )
         }
       )
     },

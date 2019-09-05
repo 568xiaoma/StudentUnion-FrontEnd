@@ -5,24 +5,21 @@
     <div class="my-myright-form-subtitle">在这里你可以查询你曾经对学生会申诉的权益问题</div>
     
     <el-form ref="myrightForm" :model="myrightForm" label-width="80px" class="my-myright-form-inner">
-      <el-form-item label="姓名">
+      <el-form-item label="姓名" :rules="rules.name" prop="name">
         <el-input v-model="myrightForm.name"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="手机号码">
-        <el-input v-model="myrightForm.phone"></el-input>
-      </el-form-item> -->
-      <el-form-item label="邮箱">
+      <el-form-item label="邮箱" :rules="rules.email" prop="email">
         <el-input v-model="myrightForm.email"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即查询</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="onSubmit('myrightForm')">立即查询</el-button>
+        <!-- <el-button>取消</el-button> -->
       </el-form-item>
     </el-form>
 
     <el-table
       :data="tableData"
-      style="width: 100%">
+      style="width: 60rem">
       <el-table-column
         prop="commitData"
         label="提交时间"
@@ -77,33 +74,52 @@
         </template>
       </el-table-column>
     </el-table>
-    
   </div>
 </template>
 <script>
 export default {
   name: 'MyRights',
   data() {
-      return {
-        myrightForm: {
-          name: '',
-          email: ''
-        },
-        tableData: [
-        ]
-      };
-    },
-  methods: {
-    onSubmit() {
-      var that = this
-      jQuery.get(
-        'https://husteicstu.cn:3000/RightCenter/myQuestion',
-        that.myrightForm,
-        function (res) {
-          console.log(res)
-          that.tableData = res.data
+    return {
+      myrightForm: {
+        name: '',
+        email: ''
+      },
+      tableData: [
+      ],
+      rules:{
+          name:[
+            { required: true, message: '姓名不能为空'},
+          ],
+          email:[
+            { required: true, message: '邮箱不能为空'},
+          ],
         }
-      )
+    };
+  },
+  methods: {
+    onSubmit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          var that = this
+          var that = this
+          jQuery.get(
+            'https://husteicstu.cn:3000/RightCenter/myQuestion',
+            that.myrightForm,
+            function (res) {
+              console.log(res)
+              that.tableData = res.data
+              that.$message({
+                message: "查询成功",
+                type: "success"
+              })
+            }
+          )
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
     }
   },
 }
@@ -116,7 +132,7 @@ body{
 }
 .my-myright-form{
   padding-top: 2rem;
-  width: 100%;
+  width: 80rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

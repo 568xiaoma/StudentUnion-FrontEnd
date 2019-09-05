@@ -1,12 +1,17 @@
 <template>
   <div>
     <el-radio-group v-model="isCollapse" style="margin: 20px;">
-      <i @click="isCollapse = true" style="font-size:30px;color:#aaaaaa" class="el-icon-s-fold"/>
-      <i @click="isCollapse = false" style="font-size:30px;color:#aaaaaa" class="el-icon-s-unfold"/>
+      <!-- <i @click="isCollapse = true" style="font-size:30px;color:#aaaaaa" class="el-icon-s-fold"/>
+      <i @click="isCollapse = false" style="font-size:30px;color:#aaaaaa" class="el-icon-s-unfold"/> -->
       <!-- <el-radio-button :label="false">展开</el-radio-button>
       <el-radio-button :label="true">收起</el-radio-button> -->
     </el-radio-group>
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+      
+      <el-menu-item index="0" @click="redirect('Statistics')">
+        <i class="el-icon-menu"></i>
+        <span slot="title">数据中心</span>
+      </el-menu-item>
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -67,6 +72,10 @@
         <i class="el-icon-menu"></i>
         <span slot="title">心理宣泄版</span>
       </el-menu-item>
+      <el-menu-item index="7" @click="redirect('RegisterForm')">
+        <i class="el-icon-menu"></i>
+        <span slot="title">学生会招新</span>
+      </el-menu-item>
     </el-menu>
   </div>
 </template>
@@ -82,24 +91,54 @@ export default {
           name: '办公室',
           index: '1-1',
         },{
-          name: '文艺部',
+          name: '辩论队',
           index: '1-2',
         },{
-          name: '体育部',
+          name: '技术部',
           index: '1-3',
         },{
-          name: '技术部',
+          name: '礼仪队',
           index: '1-4',
+        },{
+          name: '启明书屋',
+          index: '1-5',
+        },{
+          name: '权益部',
+          index: '1-6',
+        },{
+          name: '体育部',
+          index: '1-7',
+        },{
+          name: '外联部',
+          index: '1-8',
+        },{
+          name: '文艺部',
+          index: '1-9',
+        },{
+          name: '小红帽',
+          index: '1-10',
+        },{
+          name: '学术部',
+          index: '1-11',
+        },{
+          name: '主持人队',
+          index: '1-12',
         }],
         sub_CYL: [{
           name: '新闻中心',
-          index: '1-5',
+          index: '1-13',
         },{
           name: '宣传部',
-          index: '1-6',
+          index: '1-14',
         },{
           name: '组织部',
-          index: '1-7',
+          index: '1-15',
+        },{
+          name: '心理部',
+          index: '1-16',
+        },{
+          name: '社会实践部',
+          index: '1-16',
         }],
       };
     },

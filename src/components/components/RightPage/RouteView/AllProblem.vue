@@ -86,7 +86,7 @@ export default {
 
 <style>
 .my-allproblem{
-  width: 100%;
+  width: 80rem;
   padding: 2rem;
 }
 .my-desc-text-container{

@@ -1,6 +1,6 @@
 <template>
   <div class="my-department-show">
-    <el-form class="my-department-show-form" ref="form" :model="form" label-width="80px">
+    <el-form class="my-department-show-form" ref="form" :model="form" label-width="100px">
       <el-form-item label="部门名称" >
         <el-input v-model="form.name" disabled></el-input>
       </el-form-item>
@@ -10,7 +10,7 @@
       <el-form-item label="部长姓名">
         <el-input v-model="form.account"></el-input>
       </el-form-item>
-      <el-form-item label="邮箱">
+      <el-form-item label="部门招新群">
         <el-input v-model="form.email"></el-input>
       </el-form-item>
       <el-form-item label="电话">
@@ -19,14 +19,14 @@
       <el-form-item label="QQ">
         <el-input v-model="form.qq"></el-input>
       </el-form-item>
+      <el-form-item label="一句话部门">
+        <el-input v-model="form.departFunction"></el-input>
+      </el-form-item>
       <el-form-item label="部门简介">
         <el-input type="textarea" class="my-department-show-form-font" v-model="form.describe" :rows="5"></el-input>
       </el-form-item>
-      <el-form-item label="部门职能">
-        <el-input type="textarea" class="my-department-show-form-font" v-model="form.departFunction" :rows="5"></el-input>
-      </el-form-item>
       <el-form-item label="往年活动">
-        <el-input type="textarea" class="my-department-show-form-font" v-model="form.activities" :rows="5"></el-input>
+        <el-input type="textarea" class="my-department-show-form-font" v-model="form.activity" :rows="5"></el-input>
       </el-form-item>
 
       <div class="my-department-item-title">展示图</div>
@@ -119,7 +119,7 @@
       </el-upload>
 
       
-      <div class="my-department-item-title">部门二维码</div>
+      <div class="my-department-item-title">招新二维码</div>
       <div class="my-department-slide-img-container-outer">
         <div
           class="my-department-slide-img-container"
@@ -243,6 +243,10 @@ export default {
           console.log(res)
           that.form.imgs = JSON.parse(that.form.imgs)
           that.form.imgs.showImg = []
+          that.$message({
+            message: "提交成功",
+            type: "success"
+          })
         }
       )
     },
@@ -253,7 +257,7 @@ export default {
         });
     },
     handleAvatarSuccessShow(res, file) {
-      this.imageUrlShowList.push('http://husteicstu.cn/'+ res.key)
+      this.imageUrlShowList.push('http://cdn.husteicstu.cn/'+ res.key)
       this.form.imgs.showImg = this.imageUrlShowList
       console.log(this.form.imgs.showImg)
     },
@@ -265,7 +269,7 @@ export default {
       console.log(file)
     },
     handleAvatarSuccessFeature(res, file) {
-      this.imageUrlFeatureList.push('http://husteicstu.cn/'+ res.key)
+      this.imageUrlFeatureList.push('http://cdn.husteicstu.cn/'+ res.key)
       this.form.imgs.featureImg = this.imageUrlFeatureList
     },
     beforeAvatarUploadFeature(file) {
@@ -277,7 +281,7 @@ export default {
     },
     handleAvatarSuccessLogo(res, file) {
       console.log(this.form)
-      this.imageUrlLogoList.push('http://husteicstu.cn/'+ res.key)
+      this.imageUrlLogoList.push('http://cdn.husteicstu.cn/'+ res.key)
       this.form.imgs.LOGO = this.imageUrlLogoList
       console.log(this.form.imgs)
     },
@@ -290,7 +294,7 @@ export default {
     },
     handleAvatarSuccessQrcode(res, file) {
       console.log(this.form)
-      this.imageUrlQrcodeList.push('http://husteicstu.cn/'+ res.key)
+      this.imageUrlQrcodeList.push('http://cdn.husteicstu.cn/'+ res.key)
       this.form.imgs.Qrcode = this.imageUrlQrcodeList
       console.log(this.form.imgs)
     },
@@ -337,6 +341,24 @@ export default {
   watch: {
     $route(){
       var that = this
+      this.form = {
+        account: '',
+        name: '',
+        adminName: '',
+        fullName: '',
+        departFunction: '',
+        activity: '',
+        describe: '',
+        imgs: {
+          showImg: [],
+          featureImg: [],
+          LOGO: [],
+          Qrcode: [],
+        },
+        phone: '',
+        email: '',
+        qq: '',
+      }
       this.form.name = this.$route.query.department
       jQuery.get(
         'https://husteicstu.cn:3000/department',
@@ -366,7 +388,7 @@ export default {
 
 <style>
 .my-department-slide-img-container-outer{
-  margin: 0 0px 8px 80px;
+  margin: 0 0px 8px 100px;
   display: flex;
   flex-direction: row;
 }
@@ -384,13 +406,13 @@ export default {
 
 
 .my-department-show-form-photo{
-  margin-left: 80px;
-  margin-bottom: 3rem;;
+  margin-left: 100px;
+  margin-bottom: 3rem;
 }
 .my-department-item-title{
   font-size: 0.9rem;
   color: rgb(109, 109, 109);
-  margin: 0rem 0rem 0rem 0.9rem;
+  margin: 0rem 0rem 0rem 3rem;
 }
 .my-department-show{
   padding-top: 3rem;

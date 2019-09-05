@@ -20,35 +20,35 @@ export default {
   data() {
       return {
         fit:'cover',
-        url: 'http://down-qn.699pic.com/photo/40006/2210.jpg?sign=6e24ea326a418950e9ef3430a929a13b&t=5d19d8d2&n=%C9%E3%CD%BC%CD%F8_400062210.jpg',
+        url: 'http://cdn.husteicstu.cn/func-background.jpg',
         FunInfos:[
           {
             functionName: "我要维修",
-            functionEnglish: "HyAEA",
+            functionEnglish: "Maintain",
             iconClass:"el-icon-edit",
             pathname:"",
           },
           {
             functionName: "宣传预约",
-            functionEnglish: "HyAEA",
+            functionEnglish: "Propagandize",
             iconClass:"el-icon-edit",
             pathname:"",
           },
           {
             functionName: "加入我们",
-            functionEnglish: "HyAEA",
+            functionEnglish: "Join us",
             iconClass:"el-icon-edit",
             pathname:"RegisterPage",
           },
           {
             functionName: "会议室申请",
-            functionEnglish: "HyAEA",
+            functionEnglish: "MeetingRoom",
             iconClass:"el-icon-edit",
             pathname:"",
           },
           {
             functionName: "启明书屋",
-            functionEnglish: "HyAEA",
+            functionEnglish: "BookHome",
             iconClass:"el-icon-edit",
             pathname:"",
           },
@@ -67,13 +67,16 @@ export default {
         this.$router.push({ name: pathname})
       }
     },
+    openWindow(){
+      window.open("http://119.23.218.94/");
+    }
   }
 }
 </script>
 
 <style>
 .my-button-block{
-  width: 100%;
+  width: 100rem;
   height: 20rem;
 }
 .my-image-button{
@@ -83,11 +86,12 @@ export default {
   color: white;
 }
 .my-function-back-image{
-  width: 100%;
+  width: 80rem;
   height: 20rem;
   z-index:0;
 }
 .my-function-row{
+  width: 80rem;
   color: white;
   display:flex;
   flex-direction: row;

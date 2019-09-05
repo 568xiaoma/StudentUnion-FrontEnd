@@ -9,7 +9,7 @@
     把你开心的事情分享一下让大家开心开心，把你不开心的事情说出来让大家快乐快乐
   </div>
   <div class="my-ventwall-tags">
-    <el-tag type="warning" v-for="item in tags" @click="findByTag(item.tag)">{{item.tag}}</el-tag>
+    <el-tag style="margin: 0.2rem;" type="warning" v-for="item in tags" @click="findByTag(item.tag)">{{item.tag}}</el-tag>
   </div>
   
   <div class="my-vent-wall">
@@ -34,7 +34,7 @@
               <div class="my-vent-comment-title">评论</div>
               <input
                 placeholder="身份"
-                style="width: 2rem;margin-left:1rem;"
+                style="width: 2.6rem;margin-left:1rem;"
                 class="my-vent-comment-title-input"
                 v-model="input.identity"
                 maxlength="3">
@@ -66,153 +66,8 @@ export default {
           identity:"",
           content:""
         },
-        propertys:[
-          {
-            color:"#409EFF",
-            size:8,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-            comment:[
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-            ]
-          },
-          {
-            color:"#67C23A",
-            size:8,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-            comment:[
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-            ]
-          },
-          {
-            color:"#E6A23C",
-            size:9,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-            comment:[
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-              {
-                content: "哈哈哈哈哈哈哈哈哈哈哈哈",
-                identity:"路人汪"
-              },
-            ]
-          },
-          {
-            color:"#F56C6C",
-            size:10,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#909399",
-            size:7,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#F56C6C",
-            size:12,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#909399",
-            size:8,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#409EFF",
-            size:10,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#67C23A",
-            size:8,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#F56C6C",
-            size:8,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#909399",
-            size:12,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#F56C6C",
-            size:8,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-          {
-            color:"#909399",
-            size:9,
-            index:1,
-            content:"啊啊啊啊，王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊王嘉诚哥哥好帅啊啊啊啊啊啊啊啊啊",
-          },
-        ],
-        tags:['asd','asdas'],
+        propertys:[],
+        tags:[],
       };
     },
   methods: {
@@ -251,25 +106,48 @@ export default {
     },
     send(index){
       var that = this
-      jQuery.post(
-        'https://husteicstu.cn:3000/PsychologyBoard/Reply',
-        {
-          content: that.input.content,
-          name: that.input.identity,
-          index: index
-        },
-        function (res) {
-          console.log(res)
-          that.tableData = res.data
-          jQuery.get(
-            'https://husteicstu.cn:3000/PsychologyBoard',
-            function (res) {
-              console.log(res)
-              that.propertys = res.data
-            }
-          )
-        }
-      )
+      if(that.input.identity == ""){
+        
+        this.$message({
+          message: '请输入身份内容',
+          type: 'warning'
+        });
+      }
+      else if( that.input.content == ""){
+
+        this.$message({
+          message: '请输入内容',
+          type: 'warning'
+        });
+      }
+      else{
+        jQuery.post(
+          'https://husteicstu.cn:3000/PsychologyBoard/Reply',
+          {
+            content: that.input.content,
+            name: that.input.identity,
+            index: index
+          },
+          function (res) {
+            console.log(res)
+            that.tableData = res.data
+            jQuery.get(
+              'https://husteicstu.cn:3000/PsychologyBoard',
+              function (res) {
+                console.log(res)
+                that.propertys = res.data
+                that.$message({
+                  message: '发表成功',
+                  type: 'success'
+                });
+                that.input.identity = ""
+                that.input.content = ""
+              }
+            )
+          }
+        )
+      }
+      
     },
     findByTag(tag){
       var that = this
@@ -280,7 +158,8 @@ export default {
         },
         function (res) {
           console.log(res.data)
-          that.propertys = res.data
+          that.propertys = res.data[0].messages
+          console.log(that.propertys)
         }
       )
     }
@@ -292,6 +171,7 @@ export default {
       function (res) {
         console.log(res)
         that.propertys = res.data
+        console.log(that.propertys)
       }
     )
     jQuery.get(
@@ -346,7 +226,7 @@ input::-webkit-input-placeholder {
   color: #000000;
 }
 .my-vent-wall-outer{
-  width: 80%;
+  width: 80rem;
   padding: 3rem;
   display: flex;
   flex-wrap: wrap;
@@ -360,7 +240,7 @@ input::-webkit-input-placeholder {
   margin-right: 5rem;
 }
 .my-vent-wall{
-  width: 100%;
+  width: 80rem;
   padding: 3rem;
   display: flex;
   flex-wrap: wrap;

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="my-ventpanel-main-contain-col">
+    <div class="my-ventpanel-main-contain-col" :style="{width:adjustWidth}">
       <div class="my-ventpanel-main-contain-row">
         <LeftBar/>
         <transition :name="direction" >
-          <router-view  class="appView"/>
+          <router-view/>
         </transition>
       </div>
     </div>
@@ -20,11 +20,29 @@ export default {
   },
   data() {
       return {
-        
+        adjustWidth: ''
       };
     },
   methods: {
 
+  },
+  mounted(){
+    var is_mobi = navigator.userAgent.toLowerCase().match(/(ipod|ipad|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null;
+    if(is_mobi){
+      this.adjustWidth = '80rem'
+      // this.$message({
+      //   message:'手机',
+      //   type:'success'
+      // })
+    }else{
+      this.adjustWidth = '100%'
+    }
+    jQuery.post(
+      'https://husteicstu.cn:3000/count',
+      function (res) {
+        console.log(res)
+      }
+    )
   },
   watch: {
     $route(to, from) {
@@ -49,6 +67,7 @@ body{
 }
 .my-ventpanel-main-contain-col{
   display: flex;
+  /* margin-left: 3rem; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -56,14 +75,14 @@ body{
 }
 .my-ventpanel-main-contain-row{
   display: flex;
-  width: 80rem;
+  width: 100%;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
 }
 .appView {
   position: relative;
-  width:100%;
+  /* width: 60rem; */
   transition: transform 0.3s ease-out;
 }
 .slide-left-enter{

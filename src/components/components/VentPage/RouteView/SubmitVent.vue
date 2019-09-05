@@ -76,23 +76,36 @@ export default {
     },
     onSubmit(){
       var that = this
-      var myDate = new Date();
-      console.log(that.dynamicTags)
-      jQuery.post(
-        'https://husteicstu.cn:3000/PsychologyBoard/send',
-        {
-          index: myDate.getTime(),
-          size: Math.ceil(Math.random()*6)+6,
-          color: colors[Math.ceil(Math.random()*4)-1],
-          content: that.content,
-          reply:[],
-          tags: JSON.stringify(that.dynamicTags),
-        },
-        function (res) {
-          console.log(res)
-          that.tableData = res.data
-        }
-      )
+      if(that.content == ""){
+        this.$message({
+          message: '请输入宣泄内容',
+          type: 'warning'
+        });
+      }
+      else{
+        var myDate = new Date();
+        console.log(that.dynamicTags)
+        jQuery.post(
+          'https://husteicstu.cn:3000/PsychologyBoard/send',
+          {
+            index: myDate.getTime(),
+            size: Math.ceil(Math.random()*6)+6,
+            color: colors[Math.ceil(Math.random()*4)-1],
+            content: that.content,
+            reply:[],
+            tags: JSON.stringify(that.dynamicTags),
+          },
+          function (res) {
+            console.log(res)
+            that.$message({
+              message: '发表成功',
+              type: 'success'
+            });
+            that.tableData = res.data
+          }
+        )
+      }
+      
     }
   },
 }
@@ -115,7 +128,7 @@ export default {
   vertical-align: bottom;
 }
 .my-vent-submit{
-  width: 80%;
+  width: 60rem;
   padding: 3rem;
   display: flex;
   flex-wrap: wrap;
@@ -128,6 +141,7 @@ export default {
   width: 4rem;
 }
 .my-vent-submit-title{
+  width: 80rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -136,6 +150,7 @@ export default {
   font-weight: bold;
 }
 .my-vent-submit-subtitle{
+  /* width: 60rem; */
   font-size: 0.9rem;
   margin-top: 0.5rem;
   color:rgb(143, 143, 143);

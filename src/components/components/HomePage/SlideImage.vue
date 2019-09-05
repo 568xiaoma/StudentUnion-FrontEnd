@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="my-homepage-slide-container-outer" >
-      <div class="my-homepage-slide-container">
+    <div class="my-homepage-slide-container-outer" :style="{width:adjustWidth}">
+      <div class="my-homepage-slide-container" :style="{width:adjustWidth}">
       <el-carousel 
         :interval="4000" 
           :width="'80rem'"
@@ -28,6 +28,7 @@ export default {
   name: 'SlideImage',
   data() {
       return {
+        adjustWidth:'',
         slideHeight:'',
         slideWidth:'',
         slidefit:'cover',
@@ -37,6 +38,16 @@ export default {
   methods: {
   },
   mounted(){
+    var is_mobi = navigator.userAgent.toLowerCase().match(/(ipod|ipad|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null;
+    if(is_mobi){
+      this.adjustWidth = '80rem'
+      this.$message({
+        message:'手机',
+        type:'success'
+      })
+    }else{
+      this.adjustWidth = '100%'
+    }
     var that = this
     jQuery.get(
       'https://husteicstu.cn:3000/imgsMap',
@@ -63,7 +74,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 80rem;
+  width: 100%;
   height: 40rem;
 }
 .my-homepage-slide-container-outer{

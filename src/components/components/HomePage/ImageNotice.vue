@@ -2,7 +2,7 @@
   <el-card class="my-image-card-box-card">
     <div slot="header" class="clearfix">
       <span>图片新闻</span>
-      <el-button style="float: right; padding: 3px 0" type="text" @click="showMore()">更多></el-button>
+      <!-- <el-button style="float: right; padding: 3px 0" type="text" @click="showMore()">更多></el-button> -->
     </div>
     <div v-for="(item,index) in tableData" :key="index" class="my-image-card-item">
       <el-popover
@@ -55,7 +55,7 @@ export default {
       'https://husteicstu.cn:3000/imgNews',
       function (res) {
         that.tableData = res.data
-        console.log(res.data)
+        // console.log(res.data)
       }
     )
   }

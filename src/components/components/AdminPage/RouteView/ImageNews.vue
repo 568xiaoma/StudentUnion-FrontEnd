@@ -132,7 +132,7 @@ export default {
       this.nowIndex = index
     },
     handleAvatarSuccess(res, file) {
-      this.tableData[this.nowIndex].img = 'http://husteicstu.cn/'+ res.key
+      this.tableData[this.nowIndex].img = 'http://cdn.husteicstu.cn/'+ res.key
     },
     beforeAvatarUpload(file) {
       var that = this
@@ -141,7 +141,7 @@ export default {
       this.postData.key = key;
     },
     handleRemove(file, fileList) {
-      var i = this.imageUrlList.indexOf('http://husteicstu.cn/'+file.name)
+      var i = this.imageUrlList.indexOf('http://cdn.husteicstu.cn/'+file.name)
       this.imageUrlList.splice(i,1)
       console.log(this.imageUrlList)
     },
@@ -158,21 +158,37 @@ export default {
       )
     },
     handleClick(data){
+      var that = this
       jQuery.post(
         'https://husteicstu.cn:3000/imgNews',
         data,
         function (res) {
           console.log(res)
+          that.$message({
+            message: "提交成功",
+            type: "success"
+          })
         }
       )
     },
     handleDeleteClick(data){
+      var that = this
       console.log(data.index)
       jQuery.post(
         'https://husteicstu.cn:3000/imgNews/delete',
         {index: data.index},
         function (res) {
-          console.log(res)
+          that.$message({
+            message: '删除成功',
+            type: 'success'
+          });
+          jQuery.get(
+            'https://husteicstu.cn:3000/imgNews',
+            function (res) {
+              that.tableData = res.data
+              console.log(res.data)
+            }
+          )
         }
       )
     },

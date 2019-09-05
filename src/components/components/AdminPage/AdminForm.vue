@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="my-adminform-main-contain-col">
+    <div class="my-adminform-main-contain-col" :style="{width:adjustWidth}">
       <div class="my-adminform-main-contain-row">
         <LeftBar/>
         <router-view/>
@@ -16,7 +16,22 @@ export default {
   components:{
     LeftBar:LeftBar,
   },
+  data(){
+    return{
+      adjustWidth:'',
+    }
+  },
   mounted(){
+    var is_mobi = navigator.userAgent.toLowerCase().match(/(ipod|ipad|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null;
+    if(is_mobi){
+      this.adjustWidth = '80rem'
+      // this.$message({
+      //   message:'手机',
+      //   type:'success'
+      // })
+    }else{
+      this.adjustWidth = '100%'
+    }
   }
 }
 </script>

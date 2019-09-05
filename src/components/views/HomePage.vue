@@ -1,13 +1,27 @@
 <template>
   <div>
-    <SlideImage/>
-    <div class="my-row-display">
-      <ImportantNotice/>
-      <ImageNotice/>
+    <div class="my-col-display" :style="{width:adjustWidth}">
+      <SlideImage/>
     </div>
-    <FeatureFunction/>
-    <Department></Department>
-    <StudentUnionStar></StudentUnionStar>
+    <div class="my-col-display" :style="{width:adjustWidth}">
+      <div class="my-row-display">
+        <ImportantNotice/>
+        <ImageNotice/>
+      </div>
+    </div>
+    <div class="my-col-display" :style="{width:adjustWidth}">
+      <div class="my-row-display-1">
+        <FeatureFunction/>
+      </div>
+    </div>
+    <div class="my-col-display" :style="{width:adjustWidth}">
+      <Department></Department>
+    </div>
+    <div class="my-col-display" :style="{width:adjustWidth}">
+      <ClassHeader></ClassHeader>
+    </div>
+    
+    <!-- <StudentUnionStar></StudentUnionStar> -->
   </div>
 </template>
 <script>
@@ -17,6 +31,7 @@ import FeatureFunction from '@/components/components/HomePage/FeatureFunction'
 import Department from '@/components/components/HomePage/Department'
 import StudentUnionStar from '@/components/components/HomePage/StudentUnionStar'
 import ImageNotice from '@/components/components/HomePage/ImageNotice'
+import ClassHeader from '@/components/components/HomePage/ClassHeader'
 
 export default {
   name: 'HomePage',
@@ -27,15 +42,24 @@ export default {
     Department:Department,
     StudentUnionStar:StudentUnionStar,
     ImageNotice:ImageNotice,
+    ClassHeader:ClassHeader
+  },
+  data(){
+    return{
+      adjustWidth: ''
+    }
   },
   mounted(){
-    // this.$message({
-    //   dangerouslyUseHTMLString: true,
-    //   showClose: true,
-    //   iconClass:'none',
-    //   duration: 3000,
-    //   message: '<img src="http://5b0988e595225.cdn.sohucs.com/images/20170915/cc491435b9b44b16860c2e01fcea4761.jpeg">'
-    // });
+    var is_mobi = navigator.userAgent.toLowerCase().match(/(ipod|ipad|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null;
+    if(is_mobi){
+      this.adjustWidth = '80rem'
+      // this.$message({
+      //   message:'手机',
+      //   type:'success'
+      // })
+    }else{
+      this.adjustWidth = '100%'
+    }
     var that = this
     jQuery.get(
       'https://husteicstu.cn:3000/PopupView',
@@ -56,6 +80,12 @@ export default {
         });
       }
     )
+    jQuery.post(
+      'https://husteicstu.cn:3000/count',
+      function (res) {
+        console.log(res)
+      }
+    )
   }
 }
 </script>
@@ -65,7 +95,21 @@ body{
   margin:0px;
   height: 1rem;
 }
+.my-col-display{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .my-row-display{
+  width: 80rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.my-row-display-1{
+  width: 80rem;
   display: flex;
   flex-direction: row;
   justify-content: center;

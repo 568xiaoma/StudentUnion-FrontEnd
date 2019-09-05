@@ -1,7 +1,7 @@
 <template>
   <div class="my-allproblem">
-    <el-input style="width: 15rem;" prefix-icon="el-icon-search" placeholder="输入查找资料名称"/>
-    <el-select v-model="value" placeholder="选择分类">
+    <!-- <el-input style="width: 15rem;" prefix-icon="el-icon-search" placeholder="输入查找资料名称"/>
+    <el-select v-model="value" placeholder="选择分类"> -->
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -16,6 +16,9 @@
         prop="time"
         label="更新时间"
         width="180">
+        <template slot-scope="scope">
+          {{scope.row.time.slice(0,15)}}
+        </template>
       </el-table-column>
       <el-table-column
         prop="title"
@@ -99,7 +102,7 @@ export default {
 
 <style>
 .my-allproblem{
-  width: 80%;
+  width: 60rem;
   padding: 5rem 10%;
 }
 </style>

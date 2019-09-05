@@ -11,16 +11,19 @@
       <div class="my-department-item" v-for="department in departments">
         <el-card :body-style="{ padding: '0.2rem'}" class="my-department-card">
           <el-image 
+            @click="addIndex(department.name)"
             class="my-department-image"
             :src="department.imgs.featureImg"
             :fit="fit"></el-image>
           <div class="my-department-show-detail-container">
-            <div class="my-department-show-detail" style="padding: 5px 14px;">
+            <div class="my-department-show-detail" style="padding: 5px 14px;"
+              @click="addIndex(department.name)">
               <el-avatar :size="50" :src="department.imgs.LOGO[0]"/>
-              <div class="my-department-title-name">{{department.fullName}}</div>
+              <div class="my-department-title-name">{{department.name}}</div>
             </div>
             <div class="my-department-show-detail-line"/>
-            <div style="margin: 0.5rem 1rem" class="my-department-show-detail-brief">{{department.describe}}</div>
+            <div style="margin: 0.5rem 1rem" class="my-department-show-detail-brief"
+              @click="addIndex(department.name)">{{department.describe}}</div>
             
             <el-popover
               placement="right"
@@ -42,6 +45,7 @@
   </div>
 </template>
 <script>
+import merge from 'webpack-merge'
 export default {
   name: 'Department',
   data() {
@@ -64,6 +68,13 @@ export default {
       };
     },
   methods: {
+    addIndex(name){
+      console.log(name)
+      this.$router.push({ name: 'DepartmentPage'})
+      this.$router.push({
+        query:merge(this.$route.query,{'department':name})
+      })
+    },
   },
   mounted(){
     var that = this
@@ -71,7 +82,7 @@ export default {
       'https://husteicstu.cn:3000/Alldepartment',
       function (res) {
         that.departments = res.data
-        console.log(that.departments)
+        // console.log(that.departments)
       }
     )
   }
@@ -134,6 +145,7 @@ body{
   align-items: center;
 }
 .my-department-header{
+  width: 80rem;
   font-size: 2rem;
   font-weight: bold;
   display: flex;

@@ -74,7 +74,7 @@ export default {
       )
     },
     handleAvatarSuccess(res, file) {
-      this.imageUrlList.push('http://husteicstu.cn/'+ res.key)
+      this.imageUrlList.push('http://cdn.husteicstu.cn/'+ res.key)
       this.form.imgs = this.imageUrlList
     },
     beforeAvatarUpload(file) {
@@ -85,7 +85,7 @@ export default {
       console.log(file)
     },
     handleRemove(file, fileList) {
-      var i = this.imageUrlList.indexOf('http://husteicstu.cn/'+file.name)
+      var i = this.imageUrlList.indexOf('http://cdn.husteicstu.cn/'+file.name)
       this.imageUrlList.splice(i,1)
       console.log(this.imageUrlList)
     },

@@ -27,7 +27,7 @@
       <el-table-column
         prop="title"
         label="软件名称"
-        width="280">
+        width="180">
         <template slot-scope="scope">
           <el-input v-model="scope.row.title" placeholder="请输入内容"></el-input>
         </template>
@@ -150,21 +150,41 @@ export default {
     },
     handleClick(data){
       console.log(data)
+      var that = this
       jQuery.post(
         'https://husteicstu.cn:3000/dataCenter',
         data,
         function (res) {
           console.log(res)
+          that.$message({
+            message: '更新成功',
+            type: 'success'
+          });
         }
       )
     },
     handleDeleteClick(data){
       console.log(data.index)
+      var that = this
       jQuery.post(
         'https://husteicstu.cn:3000/dataCenter/delete',
         {index: data.index},
         function (res) {
           console.log(res)
+          that.$message({
+            message: '更新成功',
+            type: 'success'
+          });
+          jQuery.get(
+            'https://husteicstu.cn:3000/dataCenter',
+            {
+              tag: 'software'
+            },
+            function (res) {
+              console.log(res.data)
+              that.tableData = res.data
+            }
+          )
         }
       )
     },
